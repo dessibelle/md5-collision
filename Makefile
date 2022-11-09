@@ -51,14 +51,14 @@ bytes:
 .PHONY: patch-source
 patch-source: BYTE?=$(shell xxd -s 0x00000693 -l 1 evil | awk '{ print $$2 }')
 patch-source:
-	cat source.c | sed 's/bytes\[0\] == 0xff/bytes[0] == 0x${BYTE}/' > source.c
+	git checkout -- source.c
+	sed -i '' 's/bytes\[0\] == 0xff/bytes[0] == 0x${BYTE}/' source.c
 
-.PHONY: glue
-glue:
+.PHONY: patch
+patch: patch-source
 	gcc -o executable source.c
 	dd if=executable bs=1 status=none skip=$$((0x00000700)) of=suffix
 	cat prefix_col1 suffix > good
 	cat prefix_col2 suffix > evil
 	chmod +x evil
 	chmod +x good
-
