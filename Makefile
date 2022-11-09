@@ -27,6 +27,7 @@ build: good evil
 
 .PHONY: clean
 clean:
+	git checkout -- source.c
 	rm -rf executable prefix suffix prefix_col1 prefix_col2 good evil
 
 .PHONY: diff
