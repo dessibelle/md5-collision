@@ -36,8 +36,9 @@ diff:
 
 .PHONY: test
 test:
-	md5 good evil
+	md5 good
 	./good
+	md5 evil
 	./evil
 
 .PHONY: bytes

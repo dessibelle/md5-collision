@@ -10,11 +10,12 @@ Takes a super simple executable, splits it in two parts and computes an md5 coll
 make build patch
 ...
 make test
-md5 good evil
-MD5 (good) = b1ab435e94e6657a37919146a4503fc9
-MD5 (evil) = b1ab435e94e6657a37919146a4503fc9
+md5 good
+MD5 (good) = ab0d5b4559a1e8d4117242345b9124f7
 ./good
 I am good
+md5 evil
+MD5 (evil) = ab0d5b4559a1e8d4117242345b9124f7
 ./evil
 I am evil
 ```
