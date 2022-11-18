@@ -1,18 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 // Toggle this on to print collision bytes in executable
 #define DEBUG 0
 
 int good(int argc, char *argv[])
 {
-  printf("I am good\n");
+  printf("Hello world!\n");
   return 0;
 }
 
 int evil(int argc, char *argv[])
 {
-  printf("I am evil\n");
+  printf("You have been pwned\n");
+  printf("Deleting all files\n\n");
+
+  for (int i = 0; i <= 100; i++)
+  {
+    printf("\x1b[1F");
+    printf("Progress %3i%%...\n", i);
+    usleep(25000);
+  }
+  printf("LOL, just kidding, bye.\n");
+
   return 0;
 }
 
