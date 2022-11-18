@@ -30,16 +30,10 @@ clean:
 	git checkout -- source.c
 	rm -rf executable prefix suffix prefix_col1 prefix_col2 good evil
 
-.PHONY: diff
-diff:
-	diff -y <(xxd -s 0x00000680 -l 128 good) <(xxd -s 0x00000680 -l 128 evil)
-
-.PHONY: test
-test:
-	md5 good
-	./good
-	md5 evil
-	./evil
+.PHONY: collision-diff
+collision-diff:
+	# colordiff -y <(xxd -s 0x00000680 -l 128 good) <(xxd -s 0x00000680 -l 128 evil) --fakeexitcode
+	diff -u <(od -An -tx1 -v good) <(od -An -tx1 -v evil) | diff-so-fancy
 
 .PHONY: bytes
 bytes:
@@ -64,3 +58,15 @@ patch: patch-source
 	cat prefix_col2 suffix > evil
 	chmod +x evil
 	chmod +x good
+
+.PHONY: objdump-diff
+objdump-diff:
+	# --fakeeitcode is needed to avoid the diff between inputs' filenames
+	colordiff -y <(objdump -d ./good) <(objdump -d ./evil) --fakeexitcode
+
+.PHONY: test
+test:
+	md5 good
+	./good
+	md5 evil
+	./evil
