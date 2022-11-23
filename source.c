@@ -31,17 +31,20 @@ int main(int argc, char *argv[])
 {
   FILE *f = fopen(argv[0], "rb");
 
+  unsigned int num_addrs = 8;
   int addrs[] = {
     0x00000693,
     0x000006ad,
+    0x000006ae,
     0x000006bb,
     0x000006d3,
     0x000006ed,
+    0x000006ee,
     0x000006fb
   };
-  int bytes[6];
+  int bytes[num_addrs];
 
-  for (int i = 0; i < 6; i++)
+  for (int i = 0; i < num_addrs; i++)
   {
     fseek(f, addrs[i], SEEK_SET);
     bytes[i] = fgetc(f);
