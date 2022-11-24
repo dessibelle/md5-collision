@@ -2,9 +2,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-// Toggle this on to print collision bytes in executable
-#define DEBUG 0
-
 int good(int argc, char *argv[])
 {
   printf("Hello world!\n");
@@ -52,9 +49,6 @@ int main(int argc, char *argv[])
   {
     fseek(f, addrs[i], SEEK_SET);
     bytes[i] = fgetc(f);
-#if DEBUG
-    printf("Found byte %i (%x)\n", bytes[i], bytes[i]);
-#endif
   }
   fclose(f);
 
