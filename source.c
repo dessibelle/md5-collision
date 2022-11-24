@@ -19,7 +19,7 @@ int evil(int argc, char *argv[])
   
   printf(p1);
 
-  for (int i = 0; i <= 100; i++)
+  for (int i = 0x0; i <= 0x64; i++)
   {
     printf(p2, i);
     usleep(25000);
