@@ -3,7 +3,7 @@ SHELL=bash
 all: build
 
 executable:
-	gcc -o executable source.c
+	gcc -o executable -Wno-format-security source.c
 
 prefix: executable
 	dd if=executable bs=1 status=none skip=$$((0x0)) count=$$((0x00000660)) of=prefix
@@ -52,7 +52,7 @@ patch-source:
 
 .PHONY: patch
 patch: patch-source
-	gcc -o executable source.c
+	gcc -o executable -Wno-format-security source.c
 	dd if=executable bs=1 status=none skip=$$((0x00000700)) of=suffix
 	cat prefix_col1 suffix > good
 	cat prefix_col2 suffix > evil
