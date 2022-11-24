@@ -13,16 +13,18 @@ int good(int argc, char *argv[])
 
 int evil(int argc, char *argv[])
 {
-  printf("You have been pwned\n");
-  printf("Deleting all files\n\n");
+  const char m1[] = "You have been pwned\nDeleting all files\n\n";
+  const char m2[] = "\x1b[1FProgress %3i%%...\n";
+  const char m3[] = "LOL, just kidding, bye.\n";
+  
+  printf(m1);
 
   for (int i = 0; i <= 100; i++)
   {
-    printf("\x1b[1F");
-    printf("Progress %3i%%...\n", i);
+    printf(m2, i);
     usleep(25000);
   }
-  printf("LOL, just kidding, bye.\n");
+  printf(m3);
 
   return 0;
 }
