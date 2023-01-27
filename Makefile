@@ -11,7 +11,14 @@ prefix: executable
 suffix: executable
 	dd if=executable bs=1 status=none skip=$$((0x00000700)) of=suffix
 
-prefix_col1 prefix_col2: prefix
+FASTCOLL_AVAILABLE:=$(shell command -v md5_fastcoll 2> /dev/null)
+.PHONY: require-fastcoll
+require-fastcoll:
+ifndef FASTCOLL_AVAILABLE
+	$(error "md5_fastcoll not available. Install hashclash, https://github.com/cr-marcstevens/hashclash")
+endif
+
+prefix_col1 prefix_col2: prefix require-fastcoll
 	md5_fastcoll -p prefix -o prefix_col1 prefix_col2
 
 good: prefix_col1 suffix
