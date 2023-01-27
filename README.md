@@ -4,6 +4,8 @@ An md5 collision attack example.
 
 Takes a super simple executable, splits it in two parts and computes an md5 collision using the first half (using [hashclash](https://github.com/cr-marcstevens/hashclash)). Then identifies a difference between the two prefix files, and uses that to toggle wether to execute a good or an evil payload contained within the executable.
 
+This is example code for a talk held at [FunCon04](https://jobs.funnel.io/departments/development), see [slides](slides.pdf) for additional details.
+
 ### Example usage
 
 ```bash
