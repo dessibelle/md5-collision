@@ -20,3 +20,4 @@ MD5 (evil) = ab0d5b4559a1e8d4117242345b9124f7
 I am evil
 ```
 
+**NOTE**: Make sure `md5_fastcoll` is installed and available on your $PATH.
