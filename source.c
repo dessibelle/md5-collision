@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
   }
   fclose(f);
 
-  if (bytes[0] == 0xff) // Toggle this bit according to first byte in collision
+  if (bytes[0] == 0xff) // Toggle this bit according to first _differing_ byte in collision
   {
 	  return evil(argc, argv);
   }
